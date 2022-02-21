@@ -190,6 +190,7 @@ fun cargar(fechas: MutableMap<String, Fecha>){
             println("Escriba el día")
             val año = readLine()!!.toInt()
             lista_fechas.add(Fecha(dia, mes, año))
+        //fechas[titulo] = lista_fechas
     }
 }
 fun listadoCompleto(fechas :MutableMap<String,Fecha>){
