@@ -23,8 +23,15 @@ data class Dado(var valor: Int){
     }
     fun tirarDado(){
         println(verde+"*Lanzo un dado*")
-        valor = Random.nextInt(0,6)
+        valor = Random.nextInt(0,7)
     }
+}
+
+data class Empleado(var nombre: String,var sueldo: Float){
+    fun imprimir(){
+        println("${amarillo}Nombre: $purpura$nombre$amarillo, Sueldo: $purpura$sueldo$amarillo")
+    }
+
 }
 
 fun main(args: Array<String>) {
@@ -108,9 +115,52 @@ fun main(args: Array<String>) {
     }
 
     println()
-    println(amarillo+"Problema 105")
-    println(amarillo+"Problema 105")
+    println(cian+"Colecciones : MutableList")
+    println(cian+"Problema 178")
+    val lista: List<Int> = List(100) { (Random.nextInt(0,21)) }
+    println(amarillo+"Imprimimos la lista de numeros:")
+    print("$purpura$lista, ")
+    println()
+    var n1_4 = lista.count{ it in 1..4 }
+    println("$amarillo Hay $purpura$n1_4$amarillo valores entre el 1 y el 4")
+    var n5_8 = lista.count{ it in 5..8 }
+    println("$amarillo Hay $purpura$n5_8$amarillo valores entre el 5 y el 8")
+    var n10_13 = lista.count{ it in 10..13 }
+    println("$amarillo Hay $purpura$n10_13$amarillo valores entre el 10 y el 13")
+    var n20 = lista.count{ it == 20 }
+    if (n20 >= 1){
+        println(purpura+"Existe el valor '20'")
+    }else{println(purpura+"No existe el valor '20'")}
 
+    println()
+    println(cian+"Problema 179")
+    var cuenta_total :Float = 0f
+    var empleados : MutableList<Empleado>
+    empleados = mutableListOf(Empleado("Pepe",  1200f),Empleado("Paco",  1500f),Empleado("Manolo",  1800f) )
+    empleados.forEach { it.imprimir() }
+    empleados.forEach { cuenta_total += it.sueldo }
+    println(amarillo+"La empresa gasta $purpura$cuenta_total$amarillo en sus empleados")
+    println("Añadimos una persona mas")
+    empleados.add(Empleado("Antonio",2100f))
+    cuenta_total = 0f
+    empleados.forEach { it.imprimir() }
+    empleados.forEach { cuenta_total += it.sueldo }
+    println(amarillo+"La empresa gasta $purpura$cuenta_total$amarillo en sus empleados")
+
+    println()
+    println(cian+"Problema 180")
+    println(amarillo+"Introduce la altura de 5 personas")
+    val lista_alturas : List<Float> = List(5) { (readLine()!!.toFloat()) }
+    var media_alturas=lista_alturas.average()
+    println("La altura promedio es de $purpura$media_alturas$amarillo m")
+    var mayor_media = lista_alturas.count{ it > media_alturas}
+    println(amarillo+"Hay $purpura$mayor_media$amarillo personas con altura mayor al promedio")
+    var menor_media = lista_alturas.count{ it < media_alturas}
+    println(amarillo+"Hay $purpura$menor_media$amarillo personas con altura mayor al promedio")
+
+    println()
+    println(cian+"Colecciones : Set MutableSet")
+    println(cian+"Problema 189")
 
 
 }
