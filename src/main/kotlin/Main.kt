@@ -163,4 +163,47 @@ fun main(args: Array<String>) {
     println(cian+"Problema 189")
 
 
+    println(cian+"Colecciones : Map MutableMap")
+    println(cian+"Problema 186")
+    val fechas: MutableMap<String, Fecha> = mutableMapOf()
+    cargar(fechas)
+    listadoCompleto(fechas)
+    consultaFechas(fechas)
+
+
+
+}
+
+data class Fecha(val dia: Int, val mes: Int, val año: Int)
+fun cargar(fechas: MutableMap<String, Fecha>){
+    println(amarillo+"¿Cuantas fechas quiere cargar?")
+    val cant = readLine()!!.toInt()
+    for (i in 1.. cant){
+        println("Escriba un titulo para la fecha")
+        val titulo = readLine()!!.toString()
+        val lista_fechas = mutableListOf<Fecha>()
+
+            println("Escriba el día")
+            val dia = readLine()!!.toInt()
+            println("Escriba el día")
+            val mes = readLine()!!.toInt()
+            println("Escriba el día")
+            val año = readLine()!!.toInt()
+            lista_fechas.add(Fecha(dia, mes, año))
+    }
+}
+fun listadoCompleto(fechas :MutableMap<String,Fecha>){
+    println("Listado de las fechas:")
+    for ((titulos,fecha) in fechas){
+        println(amarillo+"Título: $purpura$titulos$amarillo es para el $purpura${fecha.dia}$amarillo de $purpura${fecha.mes}$amarillo del $purpura${fecha.año}$amarillo")
+        println()
+    }
+}
+
+fun consultaFechas(fechas: MutableMap<String, Fecha>){
+    println(amarillo+"Introduce el titulo del evento")
+    val titulo = readLine()!!.toString()
+    if (titulo in fechas){
+        println(amarillo+"$purpura${fechas[titulo]?.dia}$amarillo/$purpura${fechas[titulo]?.mes}$amarillo/$purpura${fechas[titulo]?.año}$amarillo")
+    }
 }
