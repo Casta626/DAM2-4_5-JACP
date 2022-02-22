@@ -161,8 +161,23 @@ fun main(args: Array<String>) {
     println()
     println(cian+"Colecciones : Set MutableSet")
     println(cian+"Problema 189")
+    var a = Random.nextInt(0,51)
+    var b = Random.nextInt(0,51)
+    var c = Random.nextInt(0,51)
+    var d = Random.nextInt(0,51)
+    var e = Random.nextInt(0,51)
+    var f = Random.nextInt(0,51)
+    var carton: MutableSet<Int> = mutableSetOf(a,b,c,d,e,f)
+    println(amarillo+"Carton de lotería generado"+purpura)
+    println(carton)
+    val bolas: MutableSet<Int> = mutableSetOf()
+    generaRandom(carton)
+    println(amarillo+"Numeros de las bolas"+amarillo)
+    generaRandom(bolas)
+    acertar(carton, bolas)
 
 
+    println()
     println(cian+"Colecciones : Map MutableMap")
     println(cian+"Problema 186")
     val fechas: MutableMap<String, Fecha> = mutableMapOf()
@@ -174,25 +189,53 @@ fun main(args: Array<String>) {
 
 }
 
+fun generaRandom(bolas: MutableSet<Int>){
+    for (i in 0..7){
+        var tirada = Random.nextInt(0,51)
+        bolas.add(tirada)
+        println(tirada)
+    }
+}
+
+
+
 data class Fecha(val dia: Int, val mes: Int, val año: Int)
 fun cargar(fechas: MutableMap<String, Fecha>){
     println(amarillo+"¿Cuantas fechas quiere cargar?")
-    val cant = readLine()!!.toInt()
+    var cant = readLine()!!.toInt()
     for (i in 1.. cant){
         println("Escriba un titulo para la fecha")
-        val titulo = readLine()!!.toString()
-        val lista_fechas = mutableListOf<Fecha>()
+        var titulo = readLine()!!.toString()
+        var lista_fechas = mutableListOf<Fecha>()
 
             println("Escriba el día")
-            val dia = readLine()!!.toInt()
+            var dia = readLine()!!.toInt()
             println("Escriba el día")
-            val mes = readLine()!!.toInt()
+            var mes = readLine()!!.toInt()
             println("Escriba el día")
-            val año = readLine()!!.toInt()
+            var año = readLine()!!.toInt()
             lista_fechas.add(Fecha(dia, mes, año))
         //fechas[titulo] = lista_fechas
     }
 }
+
+fun acertar(carton: MutableSet<Int>, bolas: MutableSet<Int>) {
+    var aciertos = 0
+    var cantidad_bolas = 0
+    var intentos = 0
+    for(bola in bolas) {
+        cantidad_bolas++
+        if (bola in carton) {
+            aciertos++
+            if (aciertos == 6) {
+                intentos = cantidad_bolas
+                break
+            }
+        }
+    }
+    println("Se sacaron $intentos bolillas hasta que el cartón ganó.")
+}
+
 fun listadoCompleto(fechas :MutableMap<String,Fecha>){
     println("Listado de las fechas:")
     for ((titulos,fecha) in fechas){
@@ -203,7 +246,7 @@ fun listadoCompleto(fechas :MutableMap<String,Fecha>){
 
 fun consultaFechas(fechas: MutableMap<String, Fecha>){
     println(amarillo+"Introduce el titulo del evento")
-    val titulo = readLine()!!.toString()
+    var titulo = readLine()!!.toString()
     if (titulo in fechas){
         println(amarillo+"$purpura${fechas[titulo]?.dia}$amarillo/$purpura${fechas[titulo]?.mes}$amarillo/$purpura${fechas[titulo]?.año}$amarillo")
     }
